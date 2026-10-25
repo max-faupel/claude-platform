@@ -1,47 +1,49 @@
 """Eval ausführen."""
 
 import json
+from pathlib import Path
 
 from common import add_user_message, chat
 
 
 def run_prompt(test_case):
-    """Merges the prompt and test case input, then returns the result"""
+    """Kombiniert den Prompt mit der Aufgabe des Testfalls und gibt die Antwort zurück."""
     prompt = f"""
 Please solve the following task:
 
 {test_case["task"]}
 """
-    
+
     messages = []
     add_user_message(messages, prompt)
     output = chat(messages)
     return output
 
+
 def run_test_case(test_case):
-    """Calls run_prompt, then grades the result"""
+    """Ruft run_prompt auf und bewertet anschließend das Ergebnis."""
     output = run_prompt(test_case)
-    
+
     # TODO - Bewertung
     score = 10
-    
-    return {
-        "output": output,
-        "test_case": test_case,
-        "score": score
-    }
+
+    return {"output": output, "test_case": test_case, "score": score}
+
 
 def run_eval(dataset):
-    """Loads the dataset and calls run_test_case with each case"""
+    """Führt run_test_case für jeden Testfall des übergebenen Datensatzes aus."""
     results = []
-    
+
     for test_case in dataset:
         result = run_test_case(test_case)
         results.append(result)
-    
+
     return results
 
-with open("dataset.json") as f:
+
+DATASET_PATH = Path(__file__).parent / "dataset.json"
+
+with open(DATASET_PATH) as f:
     dataset = json.load(f)
 
 results = run_eval(dataset)

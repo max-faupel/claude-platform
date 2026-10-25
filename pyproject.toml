@@ -14,10 +14,11 @@ dev = [
 
 [tool.ruff]
 line-length = 100
+src = ["examples"]
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "B", "UP"]
+select = ["E", "W", "F", "I", "B", "UP"]
 
 [tool.ruff.lint.per-file-ignores]
-# Lange Prompt-Strings und Kommentare
-"examples/10_2_generate_test_data.py" = ["E501"]
+# Lange Prompt-Strings und Kommentare in den Eval-Beispielen
+"examples/10_*.py" = ["E501"]

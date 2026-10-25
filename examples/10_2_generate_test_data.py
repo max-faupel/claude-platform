@@ -1,6 +1,7 @@
 """Testdaten generieren."""
 
 import json
+from pathlib import Path
 
 from common import add_user_message, chat
 
@@ -53,8 +54,11 @@ Please generate 3 objects.
     text = chat(messages, output_config=output_config)
     return json.loads(text)["tasks"]
 
+
 dataset = generate_dataset()
 print(dataset)
 
-with open('dataset.json', 'w') as f:
+DATASET_PATH = Path(__file__).parent / "dataset.json"
+
+with open(DATASET_PATH, "w") as f:
     json.dump(dataset, f, indent=2)
