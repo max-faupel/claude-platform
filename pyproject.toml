@@ -6,3 +6,18 @@ dependencies = [
     "anthropic>=2.3.0",
     "python-dotenv>=1.2.4",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.17.2",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+# Lange Prompt-Strings und Kommentare
+"examples/10_2_generate_test_data.py" = ["E501"]

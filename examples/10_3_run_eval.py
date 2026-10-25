@@ -4,6 +4,7 @@ import json
 
 from common import add_user_message, chat
 
+
 def run_prompt(test_case):
     """Merges the prompt and test case input, then returns the result"""
     prompt = f"""
@@ -40,7 +41,7 @@ def run_eval(dataset):
     
     return results
 
-with open("dataset.json", "r") as f:
+with open("dataset.json") as f:
     dataset = json.load(f)
 
 results = run_eval(dataset)

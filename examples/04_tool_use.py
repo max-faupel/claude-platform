@@ -1,7 +1,6 @@
 """Tool Use: Der Tool Runner führt die Schleife aus Anfrage -> Tool -> Ergebnis automatisch."""
 
 from anthropic import beta_tool
-
 from common import MODEL, get_client
 
 client = get_client()
