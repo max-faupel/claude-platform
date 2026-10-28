@@ -23,17 +23,21 @@ Please solve the following task:
 def grade_by_model(test_case, solution):
     # Erstelle Bewertungsprompt
     eval_prompt = f"""
-    You are an expert code reviewer. Evaluate this AI-generated solution.
+You are an expert code reviewer. Evaluate this AI-generated solution.
 
-    Task: {test_case["task"]}
-    Solution: {solution}
+<task>
+{test_case["task"]}
+</task>
+<solution>
+{solution}
+</solution>
 
-    Provide your evaluation as a structured JSON object with:
-    - "strengths": An array of 1-3 key strengths
-    - "weaknesses": An array of 1-3 key areas for improvement
-    - "reasoning": A concise explanation of your assessment
-    - "score": A number between 1-10
-    """
+Provide your evaluation as a structured JSON object with:
+- "strengths": An array of 1-3 key strengths
+- "weaknesses": An array of 1-3 key areas for improvement
+- "reasoning": A concise explanation of your assessment
+- "score": A number between 1-10
+"""
 
     print(f"Eval prompt: {eval_prompt}")
 
