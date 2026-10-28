@@ -40,7 +40,7 @@ def _client() -> Anthropic:
     return get_client()
 
 
-def chat(messages, system=None, stop_sequences=None, output_config=None):
+def chat(messages, system=None, stop_sequences=None, output_config=None, tools=None):
     """Einfacher Aufruf; gibt den Text der Antwort zurück."""
     params = {
         "model": MODEL,
@@ -49,6 +49,8 @@ def chat(messages, system=None, stop_sequences=None, output_config=None):
     }
     if system:
         params["system"] = system
+    if tools:
+        params["tools"] = tools
     if stop_sequences:
         params["stop_sequences"] = stop_sequences
     if output_config:
